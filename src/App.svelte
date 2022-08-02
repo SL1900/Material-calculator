@@ -1,4 +1,5 @@
 <script>
+  import SideBar from "./SideBar.svelte";
   import { v4 as uuidv4 } from "uuid";
 
   import Item from "./Item.svelte";
@@ -29,11 +30,12 @@
       ];
 
   let total = [];
+  let sidebarList = [];
+  UpdateSidebarList();
 
   $: list && updateTotal() && saveData();
 
   function saveData() {
-    console.log("Saving");
     localStorage.setItem("LastList", JSON.stringify(list));
   }
   function updateTotal() {
@@ -164,6 +166,45 @@
 
     list = list;
   }
+
+  function UpdateSidebarList() {
+    sidebarList = localStorage.getItem("SavedItems");
+    if (!sidebarList) sidebarList = [];
+    else sidebarList = JSON.parse(sidebarList);
+  }
+
+  function SidebarItemSelect({ detail: data }) {
+    let index = data.index;
+    list = JSON.parse(localStorage.getItem("SavedItems"))[index].list;
+  }
+  function SidebarItemDelete({ detail: data }) {
+    let index = data.index;
+
+    let saved_items = JSON.parse(localStorage.getItem("SavedItems"));
+    saved_items.splice(index, 1);
+
+    localStorage.setItem("SavedItems", JSON.stringify(saved_items));
+
+    UpdateSidebarList();
+  }
+  function SidebarItemSave({ detail: data }) {
+    let name = data.save_name;
+
+    let saved_items = localStorage.getItem("SavedItems");
+    if (!saved_items) {
+      localStorage.setItem("SavedItems", JSON.stringify([]));
+      saved_items = [];
+    } else saved_items = JSON.parse(saved_items);
+
+    saved_items.push({
+      name,
+      list,
+    });
+
+    localStorage.setItem("SavedItems", JSON.stringify(saved_items));
+
+    UpdateSidebarList();
+  }
 </script>
 
 <main>
@@ -197,7 +238,6 @@
     </div>
   </div>
   <div class="total-label">TOTAL:</div>
-  (bullshit)
   <div class="total">
     {#each Object.entries(total) as item}
       <div class="total_item">
@@ -211,6 +251,13 @@
     {/each}
   </div>
   <button on:click={exportJSON}>Export JSON</button>
+  <SideBar
+    enabled={false}
+    list={sidebarList}
+    on:SidebarSave={SidebarItemSave}
+    on:SidebarSelect={SidebarItemSelect}
+    on:SidebarDelete={SidebarItemDelete}
+  />
 </main>
 
 <style>
@@ -221,6 +268,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: 30px;
   }
   .app-title {
     font-weight: 900;
@@ -230,10 +278,15 @@
   .mainBody {
     display: flex;
     flex: 1;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 100%;
+    min-width: 100%;
   }
   .mainBody > * {
     margin: 10px;
+    overflow-x: hidden;
+    width: 45%;
   }
   .total-label {
     font-weight: 700;
