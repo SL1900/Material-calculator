@@ -28,11 +28,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: Bhacaz/checkout-files@v2
+      - uses: actions/checkout@master
+      - name: Remove Files
+        uses: JesseTG/rm@v1.0.3
         with:
-          files: public/
-          branch: master
+          path: /scripts/
+      - name: Remove Files
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: /src/
+      - name: Remove Files
+        uses: JesseTG/rm@v1.0.3
+        with:
+          path: /scripts/
+      - name: Remove Files
+        run: "rm .gitignore | rm README.md | rm index.html | rm package.json | rm package-lock.json | rm rollup.config.js |"
+      - name: Checkout
+        run: ""
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
