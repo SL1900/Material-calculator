@@ -32,6 +32,7 @@ jobs:
         uses: Bhacaz/checkout-files@v2
         with:
           files: public/
+          branch: master
       - name: Setup Pages
         uses: actions/configure-pages@v1
       - name: Upload artifact
