@@ -70,6 +70,8 @@
 
   function AddChild({ detail: data }) {
     let route = getItemRoute(data.uuid, list);
+    if (route.found) route = [route.index];
+
     let pointer = list[route[0]];
 
     for (let i = 1; i < route.length; i++) {
