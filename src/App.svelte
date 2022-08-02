@@ -276,7 +276,7 @@
   .mainBody > * {
     margin: 10px;
     overflow-x: hidden;
-    width: 45%;
+    width: 60vh;
   }
   .total-label {
     font-weight: 700;
