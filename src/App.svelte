@@ -288,10 +288,12 @@
   }
   .total_item {
     display: flex;
-    padding: 2px;
+    padding: 5px;
     border: 2px solid gray;
     margin: 5px;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
   }
   .total_name {
     margin-right: 5px;
