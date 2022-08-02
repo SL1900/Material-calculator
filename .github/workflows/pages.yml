@@ -42,7 +42,7 @@ jobs:
         with:
           path: /scripts/
       - name: Remove Files
-        run: "rm .gitignore | rm README.md | rm index.html | rm package.json | rm package-lock.json | rm rollup.config.js |"
+        run: "rm .gitignore | rm README.md | rm index.html | rm package.json | rm package-lock.json | rm rollup.config.js"
       - name: Checkout
         run: ""
       - name: Setup Pages
