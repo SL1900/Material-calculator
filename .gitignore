@@ -1,5 +1,4 @@
 /node_modules/
-/public/build/
 /public_local/
 .gitignore
 .DS_Store
