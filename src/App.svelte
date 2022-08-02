@@ -272,6 +272,7 @@
     overflow-y: auto;
     max-width: 100%;
     min-width: 100%;
+    justify-content: center;
   }
   .mainBody > * {
     margin: 10px;
