@@ -29,20 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Remove Files
-        uses: JesseTG/rm@v1.0.3
-        with:
-          path: /scripts/
-      - name: Remove Files
-        uses: JesseTG/rm@v1.0.3
-        with:
-          path: /src/
-      - name: Remove Files
-        uses: JesseTG/rm@v1.0.3
-        with:
-          path: /scripts/
-      - name: Remove Files
-        run: "rm .gitignore | rm README.md | rm index.html | rm package.json | rm package-lock.json | rm rollup.config.js"
       - name: Checkout
         run: ""
       - name: Setup Pages
@@ -50,8 +36,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload entire repository
-          path: '.'
+          path: 'src/'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@main
