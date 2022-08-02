@@ -17,7 +17,7 @@
   $: list = localStorage.getItem("LastList")
     ? JSON.parse(localStorage.getItem("LastList"))
     : [
-        new MaterialItem(topInputName, 1, [
+        new MaterialItem("Potter", 1, [
           new MaterialItem("Ceramic", 5, [
             new MaterialItem("Clay", 2, [
               new MaterialItem("Sand", 2),
