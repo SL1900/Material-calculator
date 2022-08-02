@@ -39,21 +39,18 @@
     {:else}
       <div class="name">{name}</div>
     {/if}
-    <div>
-      x
-      {#if sum}
-        {count_res}
-      {:else}
-        <input
-          class="item-count-input"
-          type="number"
-          min="1"
-          bind:value={count}
-          on:input={countChange}
-          on:change={countChange}
-        />
-      {/if}
-    </div>
+    {#if sum}
+      {count_res}
+    {:else}
+      <input
+        class="item-count-input"
+        type="number"
+        min="1"
+        bind:value={count}
+        on:input={countChange}
+        on:change={countChange}
+      />
+    {/if}
     {#if !sum}
       <div class="btn" on:click={addChild}>+</div>
       <div class="btn" on:click={removeChild}>-</div>
@@ -92,6 +89,8 @@
   .name {
     font-weight: 600;
     margin-right: 5px;
+    word-wrap: break-word;
+    width: 80%;
   }
   .children {
     padding-left: 10px;
@@ -108,7 +107,6 @@
     text-align: center;
   }
   .item-count-input {
-    margin: 0;
     width: 80px;
     height: 30px;
   }
