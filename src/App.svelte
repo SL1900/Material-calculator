@@ -17,17 +17,7 @@
 
   $: list = localStorage.getItem("LastList")
     ? JSON.parse(localStorage.getItem("LastList"))
-    : [
-        new MaterialItem("Potter", 1, [
-          new MaterialItem("Ceramic", 5, [
-            new MaterialItem("Clay", 2, [
-              new MaterialItem("Sand", 2),
-              new MaterialItem("Water", 1),
-            ]),
-          ]),
-          new MaterialItem("Water", 1),
-        ]),
-      ];
+    : [new MaterialItem("Empty", 1, [])];
 
   let total = [];
   let sidebarList = [];
